@@ -1,0 +1,84 @@
+<main class="shell">
+  <div class="background-art" aria-hidden="true">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+    <div class="mesh"></div>
+    <div class="grid"></div>
+  </div>
+
+  <section class="hero">
+    <p class="eyebrow">Everyday Calculator</p>
+    <h1>Fast math with a polished, keyboard-friendly layout.</h1>
+    <p class="intro">
+      Clean input, live results, quick corrections, and a bright interface that feels easy the
+      second you open it.
+    </p>
+
+    <div class="feature-row" aria-label="Calculator features">
+      <span>Live preview</span>
+      <span>Keyboard support</span>
+      <span>Clear + backspace</span>
+      <span>+, -, x, /</span>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <div class="hero-art__glow"></div>
+      <div class="hero-art__card">
+        <div class="hero-art__screen">
+          <p class="hero-art__eyebrow">Smart Input</p>
+          <p class="hero-art__equation">128 x 4 - 36</p>
+          <p class="hero-art__answer">= 476</p>
+        </div>
+
+        <div class="hero-art__chips">
+          <span>Fast</span>
+          <span>Modern</span>
+          <span>Smooth</span>
+        </div>
+
+        <div class="hero-art__keys">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="accent"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="operator"></span>
+        </div>
+      </div>
+      <div class="hero-art__badge hero-art__badge--top">Live Preview</div>
+      <div class="hero-art__badge hero-art__badge--bottom">Beautiful UI</div>
+    </div>
+  </section>
+
+  <section class="calculator" aria-label="Calculator">
+    <div class="display-panel">
+      <p class="history">{{ history() }}</p>
+      <p class="expression" aria-label="Current expression">{{ displayValue() }}</p>
+      @if (previewValue()) {
+        <div class="result-line" aria-live="polite">
+          <p class="preview">{{ previewValue() }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="keypad" role="group" aria-label="Calculator buttons">
+      @for (row of buttons; track $index) {
+        <div class="key-row">
+          @for (button of row; track button.label) {
+            <button
+              type="button"
+              class="key {{ button.variant }}"
+              (click)="handleButtonPress(button)"
+              [attr.aria-label]="button.label"
+            >
+              {{ button.label }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+  </section>
+</main>
